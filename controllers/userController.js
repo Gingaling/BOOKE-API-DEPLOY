@@ -29,17 +29,22 @@ router.post('/', (req, res) => {
 // http://localhost:8000/api/users/id
 router.get('/:id', async (req, res) => {
 	// Async/await syntax
-	// try {
-	// 	const user = await User.findById(req.params.id);
-	// 	res.json(user);
-	// } catch (error) {
-	// 	console.log(error);
-	// }
+	try {
+		const user = await User.findById(req.params.id);
+		if (user) {
+			res.json(user);
+		} else {
+			// if user doesn't exist, send back 404
+			res.sendStatus(404);
+		}
+	} catch (error) {
+		console.log(error);
+	}
 
 	// Promise-chaining syntax
-	User.findById(req.params.id)
-		.then((user) => res.json(user))
-		.catch(console.error);
+	// User.findById(req.params.id)
+	// 	.then((user) => res.json(user))
+	// 	.catch(console.error);
 });
 
 // UPDATE: EDIT an individual user
@@ -53,6 +58,17 @@ router.put('/:id', async (req, res) => {
 			{ new: true }
 		);
 		res.json(updatedDocument);
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+// DELETE: REMOVE an individual user
+// http://localhost:8000/api/users/id
+router.delete('/:id', async (req, res) => {
+	try {
+		const userToDelete = await User.findByIdAndDelete(req.params.id);
+		res.json(userToDelete);
 	} catch (error) {
 		console.log(error);
 	}
