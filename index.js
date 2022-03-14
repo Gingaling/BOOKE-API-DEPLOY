@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
 const userController = require('./controllers/userController');
 app.use('/api/users', userController);
 
+// Bookmarks Controller
+const bookmarkController = require('./controllers/bookmarkController');
+app.use('/api/bookmarks', bookmarkController);
 
 /* END CONTROLLERS HERE */
 
