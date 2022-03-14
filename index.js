@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
 
 /* START CONTROLLERS HERE */
 
+// Users Controller
+const userController = require('./controllers/userController');
+app.use('/api/users', userController);
+
+
 /* END CONTROLLERS HERE */
 
 //=============================================================================
