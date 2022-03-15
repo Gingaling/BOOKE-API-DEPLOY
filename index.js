@@ -7,6 +7,8 @@ const express = require('express');
 const app = express();
 // assign port dynamically
 app.set('port', process.env.PORT || 8000);
+// import cors
+const cors = require('cors');
 
 //=============================================================================
 // Middleware
@@ -18,6 +20,8 @@ app.use(express.json());
 // `express.urlencoded` parses x-ww-form-urlencoded request data and
 //  adds it to the request object as request.body
 app.use(express.urlencoded({ extended: true }));
+// enable cors
+app.use(cors());
 
 //=============================================================================
 // ROUTES

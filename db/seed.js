@@ -21,3 +21,4 @@ User.insertMany(userSeeds)
 	.finally(() => {
 		process.exit();
 	});
+

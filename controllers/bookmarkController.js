@@ -63,4 +63,20 @@ router.put('/:id', async (req, res) => {
 	}
 });
 
+// DELETE: REMOVE an individual bookmark
+// http://localhost:8000/api/bookmarks/id
+router.delete('/:id', async (req, res) => {
+	try {
+		const bookmarkToDelete = await Bookmark.findByIdAndDelete(req.params.id);
+		if (bookmarkToDelete) {
+			// res.json(bookmarkToDelete);
+			res.sendStatus(204);
+		} else {
+			res.sendStatus(404);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 module.exports = router;
